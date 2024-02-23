@@ -10,23 +10,23 @@
 // in, pull_up, no_int
 #define gpio_configure_pin_in(_PORT, _PIN) \
     {                                      \
-        _PORT.DDR.byte &= ~_PIN;         \
-        _PORT.CR1.byte |= _PIN;          \
-        _PORT.CR2.byte &= ~_PIN;         \
+        (_PORT).DDR.byte &= ~_PIN;         \
+        (_PORT).CR1.byte |= _PIN;          \
+        (_PORT).CR2.byte &= ~_PIN;         \
     }
 
 // out, push_pull, fast
 #define gpio_configure_pin_out(_PORT, _PIN) \
     {                                       \
-        _PORT.DDR.byte |= _PIN;             \
-        _PORT.CR1.byte |= _PIN;             \
-        _PORT.CR2.byte |= _PIN;             \
+        (_PORT).DDR.byte |= _PIN;             \
+        (_PORT).CR1.byte |= _PIN;             \
+        (_PORT).CR2.byte |= _PIN;             \
     }
 
-#define gpio_set_pin(_PORT, _PIN) LED_PORT.ODR.byte |= _PIN
-#define gpio_res_pin(_PORT, _PIN) LED_PORT.ODR.byte &= ~_PIN
+#define gpio_set_pin(_PORT, _PIN) (_PORT).ODR.byte |= _PIN
+#define gpio_res_pin(_PORT, _PIN) (_PORT).ODR.byte &= ~_PIN
 
-#define gpio_get_pin(_PORT, _PIN) (LED_PORT.ODR.byte &= _PIN)
-#define gpio_toggle_pin(_PORT, _PIN) (LED_PORT.ODR.byte ^= _PIN)
+#define gpio_get_pin(_PORT, _PIN) ((_PORT).ODR.byte &= _PIN)
+#define gpio_toggle_pin(_PORT, _PIN) ((_PORT).ODR.byte ^= _PIN)
 
 #endif
